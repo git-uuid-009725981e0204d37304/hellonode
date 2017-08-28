@@ -11,7 +11,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("git-uuid-009725981e0204d37304/hellonode")
+        app = docker.build("perlyn/hellonode")
     }
 
     stage('Test image') {
