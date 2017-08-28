@@ -1,4 +1,4 @@
-node {
+node('jenkinsci-node-172-30-109-130') {
     def app
 
     stage('Clone repository') {
