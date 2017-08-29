@@ -1,3 +1,30 @@
+#!/usr/bin/groovy
+@Library('github.com/fabric8io/fabric8-pipeline-library@master')
+
+def failIfNoTests = ""
+try {
+  failIfNoTests = ITEST_FAIL_IF_NO_TEST
+} catch (Throwable e) {
+  failIfNoTests = "false"
+}
+
+def itestPattern = ""
+try {
+  itestPattern = ITEST_PATTERN
+} catch (Throwable e) {
+  itestPattern = "*KT"
+}
+
+def versionPrefix = ""
+try {
+  versionPrefix = VERSION_PREFIX
+} catch (Throwable e) {
+  versionPrefix = "1.0"
+}
+
+def canaryVersion = "${versionPrefix}.${env.BUILD_NUMBER}"
+//def utils = new io.fabric8.Utils()
+
 node('jenkinsci-node-172-30-109-130') {
     def app
 
@@ -28,7 +55,7 @@ node('jenkinsci-node-172-30-109-130') {
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
-        docker.withRegistry('https://registry.hub.docker.com', 'hub.docker.credentials') {
+        docker.withRegistry('https://hub.docker.com', 'hub.docker.credentials') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
         }
