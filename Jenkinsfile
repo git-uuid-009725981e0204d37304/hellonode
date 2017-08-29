@@ -25,7 +25,7 @@ try {
 def canaryVersion = "${versionPrefix}.${env.BUILD_NUMBER}"
 //def utils = new io.fabric8.Utils()
 
-node('jenkinsci-node-172-30-109-130') {
+node('master') {
     def app
 
     stage('Clone repository') {
