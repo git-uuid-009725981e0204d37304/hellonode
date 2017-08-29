@@ -44,7 +44,7 @@ node('jenkinsci-node-172-30-109-131') {
  /* 
     stage('Test image') {
         /* Ideally, we would run a test framework against our image.
-         * For this example, we're using a Volkswagen-type approach ;-) */
+         * For this example, we're using a Volkswagen-type approach ;-)
 
         app.inside {
             sh 'echo "Tests passed"'
