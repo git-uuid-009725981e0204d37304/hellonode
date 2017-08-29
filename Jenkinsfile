@@ -25,7 +25,7 @@ try {
 def canaryVersion = "${versionPrefix}.${env.BUILD_NUMBER}"
 //def utils = new io.fabric8.Utils()
 
-node('jenkinsci-node-172-30-109-131') {
+node('master') {
     def app
 
     stage('Clone repository') {
@@ -55,7 +55,7 @@ node('jenkinsci-node-172-30-109-131') {
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
-        docker.withRegistry('https://hub.docker.com', 'hub.docker.credentials') {
+        docker.withRegistry('https://registry.hub.docker.com', 'hub.docker.credentials') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
         }
