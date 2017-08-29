@@ -40,15 +40,17 @@ node('jenkinsci-node-172-30-109-131') {
 
         app = docker.build("perlyn/hellonode")
     }
+  
+ /* 
+    stage('Test image') {
+        /* Ideally, we would run a test framework against our image.
+         * For this example, we're using a Volkswagen-type approach ;-) */
 
-#   stage('Test image') {
-#       /* Ideally, we would run a test framework against our image.
-#        * For this example, we're using a Volkswagen-type approach ;-) */
-#
-#        app.inside {
-#            sh 'echo "Tests passed"'
-#        }
-#    }
+        app.inside {
+            sh 'echo "Tests passed"'
+        }
+    }
+*/
 
     stage('Push image') {
         /* Finally, we'll push the image with two tags:
